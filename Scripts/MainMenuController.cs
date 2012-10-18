@@ -1,0 +1,15 @@
+using UnityEngine;
+using System.Collections;
+
+public class MainMenuController : UnitySingleton<MainMenuController> {
+	
+	public void PlayButton()
+	{
+		Debug.Log("Play Pressed.");
+	}
+	
+	public void ExitButton()
+	{
+		Debug.Log("Exit Pressed.");
+	}
+}
