@@ -11,11 +11,11 @@ public abstract class AbstractGameState
 	
 	public AbstractGameState(GameManager manager)
 	{
-		gameManager = gameManager;
+		gameManager = manager;
 	}
 	
 	public abstract IEnumerator Enter();
 	public abstract IEnumerator Pause(bool bPaused);
-	public abstract IEnumerator Update();
+	public abstract void Update();
 	public abstract IEnumerator Exit();
 }

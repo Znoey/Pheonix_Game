@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 		
 		if( uForce != Vector3.zero )
 		{
-			Debug.Log(uForce);
+			//Debug.Log(uForce);
 			rigidbody.AddForce(MAX_SPEED * uForce);
 		}
 		else
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 			rigidbody.velocity = rigidbody.velocity * 0.99f;
 		}
 		
-		if( Input.GetKey(KeyCode.Space) && _atkSpd <= 0.0f)
+		if( Input.GetButton("Fire1") && _atkSpd <= 0.0f)
 		{
 			FireWeapon();
 			_atkSpd = attackSpeed;
@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour {
 	public void FireWeapon()
 	{
 		// TODO: Enable the weapon to fire.
+		var bullet = GameObject.Instantiate(bulletPrefab) as GameObject;
+		bullet.transform.parent = transform.parent;
+		bullet.transform.localPosition = transform.localPosition;
 	}
+	
 	
 }

@@ -12,6 +12,7 @@ public class MainMenuState : AbstractGameState {
 	public override IEnumerator Enter ()
 	{
 		yield return null;
+		Application.LoadLevel("MainMenuState_scene");
 	}
 	
 	public override IEnumerator Pause (bool bPaused)
@@ -20,9 +21,9 @@ public class MainMenuState : AbstractGameState {
 		yield return null;
 	}
 	
-	public override IEnumerator Update ()
+	public override void Update ()
 	{
-		yield return null;
+		
 	}
 	
 	public override IEnumerator Exit ()

@@ -1,16 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayButton : MonoBehaviour {
+public class ExitButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
 		InputMessageDispatch.instance.Create();
 	}
 	
+	// Update is called once per frame
+	void Update () {
+		if( Input.GetKeyDown("escape"))
+		{
+			Application.Quit();
+		}
+	}
+	
 	public void MsgClick(InputInfo info)
 	{
-		Debug.Log("Start Game.");
-		GameManager.instance.ChangeState(new GameState(GameManager.instance));
+		Application.Quit();
 	}
 }

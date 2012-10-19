@@ -9,6 +9,7 @@ public sealed class InputMessageDispatch : UnitySingleton<InputMessageDispatch> 
 	
 	
 	public Camera raycastCamera;
+	public float clickTimeThreshhold = 0.2f;
 	private Ray ray;
 	private RaycastHit hit;
 	private bool didHitObject = false;
@@ -40,17 +41,17 @@ public sealed class InputMessageDispatch : UnitySingleton<InputMessageDispatch> 
 		didHitObject = Physics.Raycast(ray, out hit);
 		Button = (int)MouseButton.None;
 		
-		if( Input.GetMouseButton(0)){
+		if( Input.GetMouseButtonDown(0)){
 			Button |= (int)MouseButton.Left;
 			//Button &= ~(int)MouseButton.None;
 			TimeFirstDown = Time.time;
 		}
-		if( Input.GetMouseButton(1)){
+		if( Input.GetMouseButtonDown(1)){
 			Button |= (int)MouseButton.Right;
 			//Button &= ~(int)MouseButton.None;
 			TimeFirstDown = Time.time;
 		}
-		if( Input.GetMouseButton(2)){
+		if( Input.GetMouseButtonDown(2)){
 			Button |= (int)MouseButton.Middle;
 			//Button &= ~(int)MouseButton.None;
 			TimeFirstDown = Time.time;
@@ -87,7 +88,8 @@ public sealed class InputMessageDispatch : UnitySingleton<InputMessageDispatch> 
 				SendMsg(CurrentHit, InputMessage.MsgEnter);
 			}
 			
-			if( (Button & (int)MouseButton.None) == 0 && (Button & (int)MouseButton.Left) == 0 && CurrentHit == LastHit)
+			if( (Button & (int)MouseButton.None) == 0 && (Button & (int)MouseButton.Left) == 0 && CurrentHit == LastHit &&
+				Time.time - TimeFirstDown <= clickTimeThreshhold)
 			{
 				SendMsg(CurrentHit, InputMessage.MsgClick);
 			}
