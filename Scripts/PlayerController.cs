@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour {
 		var bullet = GameObject.Instantiate(bulletPrefab) as GameObject;
 		bullet.transform.parent = transform.parent;
 		bullet.transform.localPosition = transform.localPosition;
+		bullet.GetComponent<Bullet>().direction = Vector3.up;
 	}
-	
-	
 }

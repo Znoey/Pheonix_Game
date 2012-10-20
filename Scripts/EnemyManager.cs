@@ -11,5 +11,7 @@ public class EnemyManager : UnitySingleton<EnemyManager> {
 	public override void Init ()
 	{
 		base.Init ();
+		
+		
 	}
 }
