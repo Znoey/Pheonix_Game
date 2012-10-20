@@ -12,4 +12,12 @@ public class MainMenuController : UnitySingleton<MainMenuController> {
 	{
 		Debug.Log("Exit Pressed.");
 	}
+	
+	void Update()
+	{
+		if(Input.GetKey(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
+	}
 }

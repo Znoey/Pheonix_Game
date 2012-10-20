@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class PlayButton : MonoBehaviour {
-
+	
+	
 	// Use this for initialization
 	void Start () {
 		InputMessageDispatch.instance.Create();
