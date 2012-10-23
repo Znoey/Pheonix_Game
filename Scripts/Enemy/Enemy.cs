@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using NotificationCenter;
 
 public class Enemy : MonoBehaviour {
 
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour {
 		GetComponent<tk2dSprite>().color = Color.Lerp(Color.red, Color.white, Health / MAX_HEALTH);
 		if( Health <= 0)
 		{
+			Notify.Post(new EnemyDeath(this));
 			Destroy(this.gameObject);
 		}
 	}
@@ -58,4 +60,9 @@ public class Enemy : MonoBehaviour {
 		bullet.GetComponent<Bullet>().Source = this.gameObject;
 		bullet.GetComponent<tk2dSprite>().color = Color.magenta;
 	}
+}
+
+public class EnemyDeath : Notification<Enemy>
+{
+	public EnemyDeath(Enemy _Sender) : base(_Sender, _Sender) {}
 }

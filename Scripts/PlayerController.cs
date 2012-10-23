@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using NotificationCenter;
 
 public class PlayerController : MonoBehaviour {
 	
 	public readonly float MAX_HEALTH = 100f;
-	public float MAX_SPEED = 90.0f;
+	public float MAX_SPEED = 900.0f;
 	public float attackSpeed = 0.5f;
 	private float _atkSpd = 0.0f;
 	private Vector3 uForce = Vector3.zero;
@@ -29,7 +30,8 @@ public class PlayerController : MonoBehaviour {
 	void TakeDamage(float damage)
 	{
 		Health -= damage;
-		GetComponent<tk2dSprite>().color = Color.Lerp(Color.red, Color.white, Health / MAX_HEALTH);		
+		GetComponent<tk2dSprite>().color = Color.Lerp(Color.red, Color.white, Health / MAX_HEALTH);
+		Notify.Post(new PlayerHealthChanged(this, Health));
 	}
 	
 			
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		else
 		{
-			rigidbody.velocity = rigidbody.velocity * 0.99f;
+			rigidbody.velocity = rigidbody.velocity * 0.9f;
 		}
 		
 		if( (Input.GetButton("Fire1") && _atkSpd <= 0.0f) ||
@@ -83,4 +85,9 @@ public class PlayerController : MonoBehaviour {
 		bullet.GetComponent<Bullet>().speed = 20.0f;
 		bullet.GetComponent<Bullet>().Source = this.gameObject;
 	}
+}
+
+public class PlayerHealthChanged : Notification<float>
+{
+	public PlayerHealthChanged (object _Sender, float Health) : base(_Sender, Health){}
 }
