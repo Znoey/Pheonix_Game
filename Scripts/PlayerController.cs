@@ -53,14 +53,11 @@ public class PlayerController : MonoBehaviour {
 		uForce.z = 0;
 		uForce.Normalize();
 		
+		rigidbody.velocity = rigidbody.velocity * 0.9f;
 		if( uForce != Vector3.zero )
 		{
 			//Debug.Log(uForce);
 			rigidbody.AddForce(MAX_SPEED * uForce);
-		}
-		else
-		{
-			rigidbody.velocity = rigidbody.velocity * 0.9f;
 		}
 		
 		if( (Input.GetButton("Fire1") && _atkSpd <= 0.0f) ||
